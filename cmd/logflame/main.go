@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/apegushin/flamegraph/pkg/events"
 )
 
 func SvgTextBox(x, y, rx, ry, width, fontSize, textPadding int, text string) (res string) {
@@ -35,6 +37,8 @@ func greet(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	root := events.NewEventTree()
+	root.Root.AddChildNode(&Event{Name: "blah"})
 	http.HandleFunc("/", greet)
 	http.ListenAndServe(":8080", nil)
 }
