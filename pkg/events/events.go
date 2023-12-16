@@ -9,7 +9,7 @@ type Event struct {
 }
 
 type EventTree struct {
-	Root Event
+	Root *Event
 }
 
 func NewEventTree() *EventTree {
